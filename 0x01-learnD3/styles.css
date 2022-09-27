@@ -1,5 +1,5 @@
 .container{
-    display: inline-flexbox;
+    display: inline-flex;
     width: 1000px;
     height: 618px;
     border: 1px solid red;
@@ -8,7 +8,6 @@
 
 .bar{
     display: inline-flex;
+    justify-content: space-around;
     background-color: #720570;
-    width: 100px;
-    height: 250px;
 }
