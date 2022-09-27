@@ -36,3 +36,8 @@ const bars = container.selectAll('.bar')
     .attr('x', (data) => xScale(data.region))
     .attr('y', (data) => yScale(data.value));
     
+// Why, oh why, does `selectAll` in the var `bars` there?
+// piano piano, quello piccolo, piano piano
+setTimeout(() => {
+    bars.data(DUMMY_DATA.slice(0, 3)).exit().remove();
+}, 2000);
