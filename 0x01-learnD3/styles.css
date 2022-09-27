@@ -1,0 +1,14 @@
+.container{
+    display: inline-flexbox;
+    width: 1000px;
+    height: 618px;
+    border: 1px solid red;
+    justify-content: space-around;
+}
+
+.bar{
+    display: inline-flex;
+    background-color: #720570;
+    width: 100px;
+    height: 250px;
+}
