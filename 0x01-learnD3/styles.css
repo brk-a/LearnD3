@@ -7,7 +7,6 @@
 }
 
 .bar{
-    display: inline-flex;
     justify-content: space-around;
-    background-color: #720570;
+    fill: #720570;
 }
