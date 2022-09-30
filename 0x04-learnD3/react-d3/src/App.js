@@ -1,11 +1,10 @@
 // import logo from './logo.svg';
 import './App.css';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {select} from 'd3';
 
-const data = [25,38,45,68,20];
-
 function App() {
+  const [data, setData] = useState([25,38,45,68,20]);
   const svgRef = useRef();
 
   useEffect(() => {
@@ -16,12 +15,27 @@ function App() {
       .enter()
       .append('circle')
       .attr('class', 'updated')
-      .exit();
+      .attr('r', value => value)
+      .attr('cx', value =>  value * 2)
+      .attr('cy', value =>  value * 2)
+      .attr('stroke', 'red');
     console.log(svg);
-  }, []);
+  }, [data]);
   
+  const handleFilter = (data) => {
+    return(setData(data.map(value => value + 5)));
+  }
+
+  const handleUpdate = (data) => {
+    return(setData(data.map(value => value <= 35)));
+  }
+
   return (
-    <svg className='App' ref={svgRef}></svg>
+    <div className='container'>
+      <svg className='App' ref={svgRef}></svg>
+      <button onClick={handleUpdate}> Update Data </button>
+      <button onClick={handleFilter}> Filter Data </button>
+    </div>
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
