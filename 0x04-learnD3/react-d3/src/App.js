@@ -1,12 +1,23 @@
 // import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useRef } from 'react';
+import {select} from 'd3';
+
+const data = [25,38,45,68,20];
 
 function App() {
   const svgRef = useRef();
 
   useEffect(() => {
     console.log(svgRef);
+    const svg = select(svgRef.current);
+    svg.select('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('class', 'updated')
+      .exit();
+    console.log(svg);
   }, []);
   
   return (
