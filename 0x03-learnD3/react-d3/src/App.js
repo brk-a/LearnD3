@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useRef, useState } from 'react';
-import {select} from 'd3';
+import {select, line} from 'd3';
 
 function App() {
   const [data, setData] = useState([25,38,45,68,20]);
@@ -10,29 +10,33 @@ function App() {
   useEffect(() => {
     console.log(svgRef);
     const svg = select(svgRef.current);
-    svg.select('circle')
-      .data(data)
+    const myline = line()
+      .x((value, index) => {return (index * 50)})
+      .y((value) => {return (value)});
+    svg.selectAll('path')
+      .data([data])
       .enter()
-      .append('circle')
+      .append('path')
       .attr('class', 'updated')
-      .attr('r', value => value)
-      .attr('cx', value =>  value * 2)
-      .attr('cy', value =>  value * 2)
-      .attr('stroke', 'red');
+      .attr('d', value => myline(value))
+      .attr('fill', 'none')
+      .attr('stroke', 'blue');
     console.log(svg);
   }, [data]);
   
-  const handleFilter = (data) => {
+  const handleFilter = () => {
     return(setData(data.map(value => value + 5)));
   }
 
-  const handleUpdate = (data) => {
+  const handleUpdate = () => {
     return(setData(data.map(value => value <= 35)));
   }
 
   return (
     <div className='container'>
-      <svg className='App' ref={svgRef}></svg>
+      <svg className='App' ref={svgRef}>
+        <path d="M0, 150, 100, 100, 150, 120" stroke="blue" fill="none"></path>
+      </svg>
       <button onClick={handleUpdate}> Update Data </button>
       <button onClick={handleFilter}> Filter Data </button>
     </div>
