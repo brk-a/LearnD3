@@ -1,10 +1,10 @@
 // import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useRef, useState } from 'react';
-import {select, line} from 'd3';
+import {select, line, curveCardinal} from 'd3';
 
 function App() {
-  const [data, setData] = useState([25,38,45,68,20]);
+  const [data, setData] = useState([25,38,45,68,20, 65, 75, 15]);
   const svgRef = useRef();
 
   useEffect(() => {
@@ -20,7 +20,8 @@ function App() {
       .attr('class', 'updated')
       .attr('d', value => myline(value))
       .attr('fill', 'none')
-      .attr('stroke', 'blue');
+      .attr('stroke', 'blue')
+      .curve(curveCardinal);
     console.log(svg);
   }, [data]);
   
