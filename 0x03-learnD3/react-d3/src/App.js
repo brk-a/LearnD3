@@ -10,15 +10,25 @@ function App() {
   useEffect(() => {
     console.log(svgRef);
     const svg = select(svgRef.current);
-    const myline = line()
+
+    const myLine = line()
       .x((value, index) => {return (index * 50)})
-      .y((value) => {return (value)});
+      .y((value) => {return (150 - value)});
+
+    // svg.selectAll('path')
+    //   .data([data])
+    //   .enter()
+    //   .append('path')
+    //   .attr('class', 'updated')
+    //   .attr('d', value => myLine(value))
+    //   .attr('fill', 'none')
+    //   .attr('stroke', 'blue')
+    //   .curve(curveCardinal);
+
     svg.selectAll('path')
       .data([data])
-      .enter()
-      .append('path')
-      .attr('class', 'updated')
-      .attr('d', value => myline(value))
+      .join('path')
+      .attr('d', value => myLine(value))
       .attr('fill', 'none')
       .attr('stroke', 'blue')
       .curve(curveCardinal);
@@ -34,30 +44,14 @@ function App() {
   }
 
   return (
-    <div className='container'>
+    <React.Fragment>
       <svg className='App' ref={svgRef}>
-        <path d="M0, 150, 100, 100, 150, 120" stroke="blue" fill="none"></path>
+        <path d="M0,150 100,100 150,120" stroke="blue" fill="none"/>
       </svg>
       <button onClick={handleUpdate}> Update Data </button>
       <button onClick={handleFilter}> Filter Data </button>
-    </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-  );
+   </React.Fragment>
+   );
 }
 
 export default App;
