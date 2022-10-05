@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useRef, useState } from 'react';
-import {select, line, curveCardinal} from 'd3';
+import {select, line, curveBasis} from 'd3';
 
 function App() {
   const [data, setData] = useState([25,38,45,68,20, 65, 75, 15]);
@@ -13,28 +13,29 @@ function App() {
 
     const myLine = line()
       .x((value, index) => {return (index * 50)})
-      .y((value) => {return (150 - value)});
-
-    // svg.selectAll('path')
-    //   .data([data])
-    //   .enter()
-    //   .append('path')
-    //   .attr('class', 'updated')
-    //   .attr('d', value => myLine(value))
-    //   .attr('fill', 'none')
-    //   .attr('stroke', 'blue')
-    //   .curve(curveCardinal);
+      .y((value) => {return (150 - value)})
+      .curve(curveBasis);
 
     svg.selectAll('path')
       .data([data])
-      .join('path')
+      .enter()
+      .append('path')
+      .attr('class', 'updated')
       .attr('d', value => myLine(value))
       .attr('fill', 'none')
-      .attr('stroke', 'blue')
-      .curve(curveCardinal);
+      .attr('stroke', 'blue');
+
+    // svg.selectAll('path')
+    //   .data([data])
+    //   .join('path')
+    //   .attr('d', value => myLine(value))
+    //   .attr('fill', 'none')
+    //   .attr('stroke', 'blue');
     console.log(svg);
   }, [data]);
   
+  console.log(svgRef.current);
+
   const handleFilter = () => {
     return(setData(data.map(value => value + 5)));
   }
