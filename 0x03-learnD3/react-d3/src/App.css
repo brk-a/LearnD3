@@ -1,11 +1,21 @@
-.App {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: #ffffff;
-  border-color: #000;
+svg {
+  background: #eee;
   overflow: visible;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+button {
+  margin-bottom: 5px;
+  width: 100px;
 }
 
 /* .container{

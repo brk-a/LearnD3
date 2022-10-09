@@ -1,98 +1,87 @@
-// import logo from './logo.svg';
-import './App.css';
-import React, { useEffect, useRef, useState } from 'react';
-import {select, axisBottom, scaleLinear, axisRight, scaleBand} from 'd3';
+import React, { useRef, useEffect, useState } from "react";
+import "./App.css";
+import { select, axisBottom, axisRight, scaleLinear, scaleBand } from "d3";
 
 function App() {
-  const [data, setData] = useState([25, 38, 45, 68, 20, 65, 75]);
+  const [data, setData] = useState([25, 30, 45, 60, 10, 65, 75]);
   const svgRef = useRef();
 
-  const xScale = scaleBand()
-    .domain(data.map((_, index) => index))
-    .range([0, 300])
-    .padding(0.5);
-  
-  const yScale = scaleLinear()
-    .domain([0, 185.5])
-    .range([185.5, 0]);
-
-  const colourScale = scaleLinear()
-  .domain([92.75, 139.125, 185.5])
-  .range(['green', 'orange', 'red'])
-  .clamp(true);
-
+  // will be called initially and on every data change
   useEffect(() => {
-    console.log(svgRef);
     const svg = select(svgRef.current);
-  
-    const xAxis = axisBottom(xScale)
-      .ticks(data.length);
-    svg.selectAll('.x-axis')
-      .style('transform', 'translateY(185.5px)')
-      .call(xAxis);
 
+    // scales
+    const xScale = scaleBand()
+      .domain(data.map((value, index) => index))
+      .range([0, 300])
+      .padding(0.5);
+
+    const yScale = scaleLinear().domain([0, 150]).range([150, 0]);
+
+    const colorScale = scaleLinear()
+      .domain([75, 100, 150])
+      .range(["green", "orange", "red"])
+      .clamp(true);
+
+    // create x-axis
+    const xAxis = axisBottom(xScale).ticks(data.length);
+    svg.select(".x-axis").style("transform", "translateY(150px)").call(xAxis);
+
+    // create y-axis
     const yAxis = axisRight(yScale);
-    svg.selectAll('.y-axis')
-      .style('transform', 'translateX(300px)')
-      .call(yAxis);
+    svg.select(".y-axis").style("transform", "translateX(300px)").call(yAxis);
 
-    // const myLine = line()
-    //   .x((value, index) => {return (xScale(index))})
-    //   .y(yScale)
-    //   .curve(curveNatural);
-    // svg.selectAll('path')
-    //   .data([data])
-    //   .enter()
-    //   .append('path')
-    //   .attr('class', 'updated')
-    //   .attr('d', value => myLine(value))
-    //   .attr('fill', 'none')
-    //   .attr('stroke', 'blue');
-
-    // svg.selectAll('.line')
-    //   .data([data])
-    //   .join('path')
-    //   .attr('class', 'line')
-    //   .attr('d', value => myLine(value))
-    //   .attr('fill', 'none')
-    //   .attr('stroke', 'blue');
-
-    svg.selectAll('bar')
+    // draw the bars
+    svg
+      .selectAll(".bar")
       .data(data)
-      .join('rect')
-      .attr('class', 'bar')
-      .style('transform', 'scale(1, -1)')
-      .attr('x', (_, index) => xScale(index))
-      .attr('y', -185.5)
-      .attr('width', xScale.bandwidth())
+      .join("rect")
+      .attr("class", "bar")
+      .style("transform", "scale(1, -1)")
+      .attr("x", (value, index) => xScale(index))
+      .attr("y", -150)
+      .attr("width", xScale.bandwidth())
+      .on("mouseenter", (event, value) => {
+        // events have changed in d3 v6:
+        // https://observablehq.com/@d3/d3v6-migration-guide#events
+        const index = svg.selectAll(".bar").nodes().indexOf(event.target);
+        svg
+          .selectAll(".tooltip")
+          .data([value])
+          .join((enter) => enter.append("text").attr("y", yScale(value) - 4))
+          .attr("class", "tooltip")
+          .text(value)
+          .attr("x", xScale(index) + xScale.bandwidth() / 2)
+          .attr("text-anchor", "middle")
+          .transition()
+          .attr("y", yScale(value) - 8)
+          .attr("opacity", 1);
+      })
+      .on("mouseleave", () => svg.select(".tooltip").remove())
       .transition()
-      .attr('fill', colourScale)
-      .attr('height', value => 185.5 - yScale(value));
-
-    console.log(svg);
-  }, [data, xScale, yScale, colourScale]);
-  
-  console.log(svgRef.current);
-
-  const handleFilter = () => {
-    return(setData(data.map(value => value <= 45)));
-  }
-
-  const handleUpdate = () => {
-    return(setData(data.map(value => value + 15)));
-  }
+      .attr("fill", colorScale)
+      .attr("height", (value) => 150 - yScale(value));
+  }, [data]);
 
   return (
     <React.Fragment>
-      <svg className='App' ref={svgRef}>
-        <g className='x-axis'></g>
-        <g className='y-axis'></g>
-        {/* <path d="M0,150 100,100 150,120" stroke="blue" fill="none"/> */}
+      <svg ref={svgRef}>
+        <g className="x-axis" />
+        <g className="y-axis" />
       </svg>
-      <button onClick={handleUpdate}> Update Data </button>
-      <button onClick={handleFilter}> Filter Data </button>
-   </React.Fragment>
-   );
+      <button onClick={() => setData(data.map((value) => value + 5))}>
+        Update data
+      </button>
+      <button onClick={() => setData(data.filter((value) => value < 35))}>
+        Filter data
+      </button>
+      <button
+        onClick={() => setData([...data, Math.round(Math.random() * 100)])}
+      >
+        Add data
+      </button>
+    </React.Fragment>
+  );
 }
 
 export default App;
