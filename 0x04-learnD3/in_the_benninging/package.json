@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "rollup-plugin-cdn": "^0.1.2"
+  }
+}
