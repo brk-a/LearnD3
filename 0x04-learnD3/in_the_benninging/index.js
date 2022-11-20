@@ -25,7 +25,7 @@ const mouthArc = arc()
 
 const App = () => (
     <svg width={width} height={height}>
-        <g transform={`translate(${centrex}, ${centreY})`}>
+        <g transform={`translate(${centreX}, ${centreY})`}>
             <circle 
                 r={centreY - strokeWidth / 2}
                 fill="yellow" 
