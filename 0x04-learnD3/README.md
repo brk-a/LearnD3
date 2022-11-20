@@ -4,5 +4,8 @@
 
 ### Why `React`
 * Components
-* Managemant of [`state`](https://reactjs.org/docs/state-and-lifecycle.html)
+* Management of [`state`](https://reactjs.org/docs/state-and-lifecycle.html)
 
+### Why `D3`
+* [Manipulate documents based on data] (https://d3js.org/)
+* Visualisations such as [these] (https://observablehq.com/@d3/gallery)
