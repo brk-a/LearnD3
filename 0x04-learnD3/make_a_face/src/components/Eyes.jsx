@@ -8,6 +8,12 @@ const Eyes = ({eyeOffsetX, eyeOffsetY, eyeRadius}) => (
         cy={- eyeOffsetY}
         fill="black"
       />
+            <circle 
+        r={eyeRadius}
+        cx={eyeOffsetX} 
+        cy={- eyeOffsetY}
+        fill="black"
+      />
   
     </>
 
