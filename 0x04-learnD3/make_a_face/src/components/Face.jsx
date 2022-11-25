@@ -6,12 +6,12 @@ const Face = () => {
     const height = 500
     const centreX = width / 2
     const centreY =  height / 2
-    const strokeWidth = 10
-    const eyeOffsetX = 100
-    const eyeOffsetY = 100
-    const eyeRadius = 50
-    const mouthWidth = 100
-    const mouthRadius = 150
+    const strokeWidth = 10 + + Math.random() * 5
+    const eyeOffsetX = 100 + Math.random() * 30
+    const eyeOffsetY = 100 + Math.random() * 25
+    const eyeRadius = 50 + Math.random() * 30
+    const mouthWidth = 100 + Math.random() * 25
+    const mouthRadius = 150 + Math.random() * 20
   
     return (
       <div className="App">
