@@ -11,7 +11,7 @@ const height = 500
 const centreX = width / 2
 const centreY =  height / 2
 const strokeWidth = 10
-const eyeOffetX = 90
+const eyeOffsetX = 90
 const eyeOffsetY = 180
 const eyeRadius = 50
 const mouthWidth = 30
@@ -34,20 +34,20 @@ const App = () => (
             />
             <circle 
                 r={eyeRadius}
-                cx={- eyeOffetX} 
+                cx={- eyeOffsetX} 
                 cy={- eyeOffsetY}
                 fill="black"
             />
             <circle 
                 r={eyeRadius}
-                cx={eyeOffetX} 
+                cx={eyeOffsetX} 
                 cy={- eyeOffsetY}
                 fill="black"
             />
             <path 
                 d={mouthArc()} 
                 stroke="black"  
-                fill="transparent"
+                fill="black"
             />
         </g>
     </svg>

@@ -9,16 +9,16 @@ function App() {
   const centreX = width / 2
   const centreY =  height / 2
   const strokeWidth = 10
-  const eyeOffsetX = 90
-  const eyeOffsetY = 180
+  const eyeOffsetX = 100
+  const eyeOffsetY = 100
   const eyeRadius = 50
-  const mouthWidth = 30
-  const mouthRadius = 140
+  const mouthWidth = 100
+  const mouthRadius = 150
 
   return (
     <div className="App">
       <>
-      <svg>
+      <svg width={width} height={height}>
         <g transform={`translate(${centreX}, ${centreY})`}>
           <BackgroundCircle centreY={centreY} strokeWidth={strokeWidth}/>
           <Eyes eyeOffsetX={eyeOffsetX} eyeOffsetY={eyeOffsetY} eyeRadius={eyeRadius}/>

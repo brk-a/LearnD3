@@ -5,8 +5,8 @@ const Mouth = ({mouthRadius, mouthWidth}) => {
     const mouthArc = arc()
         .innerRadius(mouthRadius)
         .outerRadius(mouthWidth)
-        .startAngle(Math.PI * 2)
-        .endAngle(Math.PI * 3/2)
+        .startAngle(Math.PI * 5/2)
+        .endAngle(Math.PI * 7/2)
     
 
     return (
@@ -15,7 +15,7 @@ const Mouth = ({mouthRadius, mouthWidth}) => {
             <path 
                 d={mouthArc()} 
                 stroke="black"  
-                fill="transparent"
+                fill="black"
             />
         </>
       
