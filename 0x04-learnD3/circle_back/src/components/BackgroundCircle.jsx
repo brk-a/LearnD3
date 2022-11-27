@@ -1,11 +1,13 @@
 import React from 'react'
 
-const BackgroundCircle = ({centreY, strokeWidth}) => {
+const BackgroundCircle = ({circleY, strokeWidth, circleX}) => {
 
     return (
         <>
             <circle 
-                r={centreY - strokeWidth / 2}
+                r={circleY - strokeWidth / 2}
+                // cx={circleX}
+                // cy={circleY}
                 fill="yellow" 
                 stroke="black" 
                 stroke-width="10"
