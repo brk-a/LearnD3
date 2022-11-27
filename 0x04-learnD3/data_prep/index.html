@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Load and parse CSV data</title>
+    </head>
+    <body>
+        <script>
+            const url = 'https://gist.githubusercontent.com/brk-a/659c36335d911689f290c27f1db7745d/raw/namedColoursCssAll.csv'
+            const data = fetch(url)
+                .then(response => response.text()
+                    .then(text => console.log(text))
+                )
+        </script>
+    </body>
+</html>
