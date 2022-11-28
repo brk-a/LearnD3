@@ -19,8 +19,8 @@ const Face = () => {
     return (
       <div className="App">
         <>
-          <FaceContainer width={width} height={height} circleX={circleX} circleY={circleY} initialMousePosition={initialMousePosition}>
-            <BackgroundCircle circleX={circleX} circleY={circleY} circleRadius={circleRadius} mousePosition={mousePosition}/>
+          <FaceContainer width={width} height={height} circleX={circleX} circleY={circleY} initialMousePosition={initialMousePosition} mousePosition={mousePosition}>
+            <BackgroundCircle circleX={circleX} circleY={circleY} circleRadius={circleRadius} />
             {/* <Eyes eyeOffsetX={eyeOffsetX} eyeOffsetY={eyeOffsetY} eyeRadius={eyeRadius}/>
             <Mouth mouthRadius={mouthRadius} mouthWidth={mouthWidth}/> */}
         </FaceContainer>

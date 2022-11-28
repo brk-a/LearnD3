@@ -6,12 +6,12 @@ const FaceContainer = ({children, width, height, initialMousePosition}) => {
 
   const handleMouseMove = (e) => {
     const {clientX, clientY} = e
-    setMousePosition ({x: clientX, y: clientY})
-    console.log(setMousePosition ({x: clientX, y: clientY}))
+    // setMousePosition ({x: clientX, y: clientY})
+    return(setMousePosition ({x: clientX, y: clientY}))
   }
 
   return (
-    <svg width={width} height={height} onMouseMove={handleMouseMove} mousePosition={children.mousePosition}>
+    <svg width={width} height={height} onMouseMove={handleMouseMove} mousePosition={mousePosition}>
         {/* <g transform={`translate(${circleX}, ${circleY})`}> */}
         <g>
             {children}
