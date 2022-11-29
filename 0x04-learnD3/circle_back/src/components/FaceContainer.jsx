@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const FaceContainer = ({children, width, height, initialMousePosition, mousePosition}) => {
+const FaceContainer = ({children, width, height, initialMousePosition}) => {
 
   const [mousePosition, setMousePosition] = useState(initialMousePosition)
 
