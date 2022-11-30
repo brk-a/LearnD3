@@ -2,16 +2,32 @@
 <html>
     <head>
         <title>Load and parse CSV data</title>
+        <script src="https://unpkg.com/d3@5.7.0/dist/d3.min.js"></script>
+        <style>
+            pre{
+                font-size: 5em;
+            }
+        </style>
     </head>
     <body>
+        <pre id="message-container"></pre>
         <script>
             const URL = 'https://gist.githubusercontent.com/brk-a/659c36335d911689f290c27f1db7745d/raw/namedColoursCssAll.csv'
-            const data = async (url) => {
+            
+            const fetchData = async (url) => {
                 const response = await fetch(url)
                 return await response.text()
             }
 
-            data(URL).then(text => console.log(text))
+            fetchData(URL)
+                .then(text => {
+                    const data = d3.csvParse(text)
+                    let message = `${data.length} obs, ${data.columns.length} vars. ${Math.round(text.length / 1024)} kB`
+                    console.log(message)
+                    document.getElementById('message-container').textContent = message
+                })
+
+
             // const data = fetch(url)
             //     .then(response => response.text()
             //         .then(text => console.log(text))
