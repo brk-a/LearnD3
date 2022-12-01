@@ -3,6 +3,7 @@ import React from 'react'
 const BackgroundCircle = ({circleY, circleRadius, circleX, mousePosition}) => {
 
     // const [mousePosition, setMousePosition] = useState()
+    // onMouseMove={handleMouseMove}
 
     return (
         <>
