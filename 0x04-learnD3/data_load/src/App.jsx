@@ -1,28 +1,26 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 
 
-const width = 960
-const height = 500
-const circleRadius = 30
-const initialMousePosition = {x: width / 2, y: height / 2}
+const csvUrl = 'https://gist.githubusercontent.com/brk-a/659c36335d911689f290c27f1db7745d/raw/namedColoursCssAll.csv'
+
+const message = data => {
+  return `${Math.round(d3.csvFormat(data).length / 1024)}kB\n${data.length} obs\n${data.columns.length} vars`
+}
 
 function App() {
-  const [data, setData] = useState(initialMousePosition)
+  const [data, setData] = useState(null)
 
-  const handleMouseMove = useCallback((e) => {
-    const {clientX, clientY} = e
-    setData({x: clientX, y: clientY})
-  }, [setData])
+  useEffect(() => {
+    d3.csv(csvUrl).then(setData)
+  }, [])
 
   return (
     <>
-      <svg width={width} height={height} onMouseMove={handleMouseMove}>
-        <circle
-          cx={data.x}
-          cy={data.y}
-          r={circleRadius}
-        />
-      </svg>
+    <pre>
+      {data ? message(data) : 'Loading...'}
+    </pre>
+    
     </>
   )
 }
