@@ -7,7 +7,7 @@ const Face = () => {
     const circleX = width / 2
     const circleY =  height / 2
     const circleRadius = 30
-    const initialMousePosition = {x: circleX, y: circleY}
+    // const initialMousePosition = {x: circleX, y: circleY}
     // const mousePosition = {}
     // const strokeWidth = 10 + Math.random() * 5
     // const eyeOffsetX = 100 + Math.random() * 30
