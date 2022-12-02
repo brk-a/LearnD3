@@ -1,14 +1,11 @@
 import { useState, useCallback, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { Message } from './components'
 
 
 const csvUrl = 'https://gist.githubusercontent.com/brk-a/659c36335d911689f290c27f1db7745d/raw/namedColoursCssAll.csv'
 
-const message = data => {
-  return `${Math.round(d3.csvFormat(data).length / 1024)}kB\n${data.length} obs\n${data.columns.length} vars`
-}
-
-function App() {
+const  App = () => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
@@ -18,7 +15,7 @@ function App() {
   return (
     <>
     <pre>
-      {data ? message(data) : 'Loading...'}
+      {data ? Message(data) : 'Loading...'}
     </pre>
     
     </>
