@@ -2,6 +2,8 @@ import React, {useState, useCallback}from 'react'
 
 const BackgroundCircle = ({circleY, circleRadius, circleX, mousePosition, initialMousePosition}) => {
 
+    const initialMousePosition = {x: circleX, y: circleY}
+
     const [mousePosition, setMousePosition] = useState(initialMousePosition)
 
     const handleMouseMove = useCallback((e) => {
