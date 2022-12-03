@@ -1,13 +1,13 @@
 import vl from 'vega-lite-api'
 
-export const viz = vl.markpoint({
-    fill: true,
-    stroke: false,
-    size: 900,
-    opacity: 0.2
+export const viz = vl.markCircle({
+    size: 300,
+    opacity: 0.5
     })
     .encode(
-        vl.x().fieldQ('acceleration'.scale({zero: false})),
+        vl.x().fieldQ('mpg'.scale({zero: false})),
         vl.y().fieldQ('horsepower').scale({zero: false}),
+        vl.color().fieldN('origin'),
+        vl.size().fieldQ('acceleration'),
         vl.tooltip().fieldN('name')
     )
