@@ -1,14 +1,26 @@
-// import { useState } from 'react'
-import './App.css'
+import { useState, useCallback, useEffect } from 'react'
+// import ReactDOM from 'react-dom'
+// import { Message } from './components'
 
-function App() {
-  // const [count, setCount] = useState(0)
+
+const csvUrl = 'https://gist.githubusercontent.com/brk-a/659c36335d911689f290c27f1db7745d/raw/namedColoursCssAll.csv'
+
+const  App = () => {
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    d3.csv(csvUrl).then(setData)
+  }, [])
 
   return (
-    <div className="App">
-      <h1>Data Vis</h1>
-    </div>
+    <>
+    <pre>
+      {data ? Message(data) : 'Loading...'}
+    </pre>
+    
+    </>
   )
 }
 
 export default App
+
