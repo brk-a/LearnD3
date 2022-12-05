@@ -12,14 +12,17 @@ const  App = () => {
     d3.csv(csvUrl).then(setData)
   }, [])
 
-  return (
-    <>
-    <pre>
-      {data ? Message(data) : 'Loading...'}
-    </pre>
-    
-    </>
-  )
+  // console.log(data)
+
+  if (!data){
+    return <pre> 'Loading...' </pre>
+  }
+
+  return(
+    data.map((d, i) => (
+      <div key={i} style={{backgroundColor: d["Hex rgb"], width: '960px', height: '4px'}}></div>
+    )
+  ))
 }
 
 export default App
