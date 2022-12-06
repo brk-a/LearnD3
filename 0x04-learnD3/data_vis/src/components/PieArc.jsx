@@ -1,12 +1,12 @@
 
 
-const pieArc = () => {
+const PieArc = (props) => {
     const arc = (width) => (
         d3.arc().innerRadius(0)
         .outerRadius(width)
     )
     return(
-        arc()
+        <path {...props} arc={arc}/>
     )
 }
-export default pieArc
+export default PieArc
