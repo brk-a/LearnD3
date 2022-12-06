@@ -1,7 +1,6 @@
 import vega from 'vega';
 import vegalite from 'vega-lite';
-import vl from 'vega-lite-api';
-// import {vl} from '@vega/vega-lite-api-v5'
+import * as vl from 'vega-lite-api'
 import {Handler} from 'vega-tooltip';
 import {config} from './config'
 import {getData} from './getData'
