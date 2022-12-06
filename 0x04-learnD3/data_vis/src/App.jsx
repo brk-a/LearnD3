@@ -1,9 +1,11 @@
 import { useState, useCallback, useEffect } from 'react'
 // import ReactDOM from 'react-dom'
-// import { Message } from './components'
+import { pieArc } from './components'
 
 
 const csvUrl = 'https://gist.githubusercontent.com/brk-a/659c36335d911689f290c27f1db7745d/raw/namedColoursCssAll.csv'
+const width = 960
+const height = 500
 
 const  App = () => {
   const [data, setData] = useState(null)
@@ -19,10 +21,13 @@ const  App = () => {
   }
 
   return(
-    data.map((d, i) => (
-      <div key={i} style={{backgroundColor: d["Hex rgb"], width: '960px', height: '4px'}}></div>
-    )
-  ))
+    <svg width={width} height={height}>
+      {data.map((d, i) => (
+        <path key={i} fill={d["Hex rgb"]} d={pieArc(width)}/>
+      ))}
+    </svg>
+  )
+  
 }
 
 export default App
