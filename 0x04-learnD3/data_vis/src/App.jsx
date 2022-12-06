@@ -1,7 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
 
-
-
 const csvUrl = 'https://gist.githubusercontent.com/brk-a/659c36335d911689f290c27f1db7745d/raw/namedColoursCssAll.csv'
 const width = 1280
 const height = 791
