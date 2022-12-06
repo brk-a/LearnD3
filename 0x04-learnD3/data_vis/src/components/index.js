@@ -1,7 +1,7 @@
 import Message from "./Message";
-import PieArc from "./PieArc";
+import pieArc from "./PieArc";
 
 export {
     Message,
-    PieArc
+    pieArc
 }
