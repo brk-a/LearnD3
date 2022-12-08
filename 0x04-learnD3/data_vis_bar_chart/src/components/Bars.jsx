@@ -1,3 +1,5 @@
+import millify from "millify"
+
 const Bars = ({data, xScale, yScale, xValue, yValue}) => (
     data.map((d, i) => (
       <rect
@@ -6,7 +8,10 @@ const Bars = ({data, xScale, yScale, xValue, yValue}) => (
         y={yScale(yValue(d))} 
         width={xScale(xValue(d))}
         height={yScale.bandwidth()}
-      />
+        className='bar'
+      >
+        <title>{millify(xValue(d))}</title>
+      </rect>
     ))
   )
 
