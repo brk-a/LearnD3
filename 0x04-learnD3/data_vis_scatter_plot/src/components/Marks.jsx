@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Marks = ({data, xScale, xValue, yScale, yValue}) => {
+const Marks = ({data, xScale, xValue, yScale, yValue, circleRadius=10}) => {
   return (
     data.map((d, i) => (
         <circle
@@ -8,7 +8,7 @@ const Marks = ({data, xScale, xValue, yScale, yValue}) => {
             key={i}
             cx={xScale(xValue(d))}
             cy={yScale(yValue(d))}
-            r={10}
+            r={circleRadius}
         />
     ))
   )
