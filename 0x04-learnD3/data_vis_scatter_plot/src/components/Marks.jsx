@@ -10,7 +10,7 @@ const Marks = ({data, xScale, xValue, yScale, yValue, circleRadius=10, tooltipFo
             cy={yScale(yValue(d))}
             r={circleRadius}
         >
-          <title>{tooltipFormat(xValue(d))}</title>
+          <title>{tooltipFormat(xValue(d))}, {tooltipFormat(yValue(d))}</title>
         </circle>
     ))
   )
