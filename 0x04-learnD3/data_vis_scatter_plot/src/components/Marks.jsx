@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Marks = ({data, xScale, xValue, yScale, yValue, circleRadius=10}) => {
+const Marks = ({data, xScale, xValue, yScale, yValue, circleRadius=10, tooltipFormat}) => {
   return (
     data.map((d, i) => (
         <circle
@@ -9,7 +9,9 @@ const Marks = ({data, xScale, xValue, yScale, yValue, circleRadius=10}) => {
             cx={xScale(xValue(d))}
             cy={yScale(yValue(d))}
             r={circleRadius}
-        />
+        >
+          <title>{tooltipFormat(xValue(d))}</title>
+        </circle>
     ))
   )
 }

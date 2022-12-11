@@ -20,8 +20,18 @@ function App() {
   
   const xValue = d => d.sepal_length
   const xAxisLabel = 'Sepal Length'
+
   const yValue = d => d.sepal_width
   const yAxisLabel = 'Sepal Width'
+
+  const siFormat = d3.format('.2s')
+  const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G', 'B')
+  /**could've simply done this:
+   *  ===> on terminal: npm install millify
+   *  ===> in this file:
+   * import millify from 'millify'
+   * const xAxisTickFormat = tickValue => millify(tickValue)
+   */
 
   const xScale = d3.scaleLinear()
     .domain(d3.extent(data, xValue))
@@ -67,6 +77,7 @@ function App() {
           yScale={yScale}
           yValue={yValue}
           circleRadius={7}
+          tooltipFormat={xAxisTickFormat}
         />
       </g>
     </svg>
