@@ -1,9 +1,15 @@
 import React from 'react'
 
-const AxisLeft = () => {
-  return (
-    <div>AxisLeft</div>
-  )
-}
+const AxisLeft = ({yScale, innerWidth, tickOffset=5}) => (
+    yScale.ticks().map((tickValue, i) => (
+      <g className='tick' key={i} transform={`translate(0, ${yScale(tickValue)})`}>
+        <line x2={innerWidth}/>
+        <text style={{textAnchor: 'end'}} dy='.32em' x={-tickOffset}>
+          {tickValue}
+        </text>
+      </g>
+    ))
+)
+
 
 export default AxisLeft

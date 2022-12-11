@@ -7,8 +7,8 @@ const useData = () => {
 
     useEffect(() => {
         const row = d => {
-            d.temperature = 0
-            d.timestamp = 0
+            d.temperature = +d.temperature
+            d.timestamp = new Date(d.timestamp)
             return d
         }
         d3.csv(csvUrl, row).then(setData)
