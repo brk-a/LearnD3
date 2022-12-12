@@ -8,8 +8,8 @@ const useData = () => {
         d3.json(jsonUrl).then((topology) => {
             const {countries, land} = topology.objects
             setData({
-                land: d3.feature(topology, land),
-                interiors: d3.mesh(topology, countries, (a, b) => a !== b)
+                land: topojson.feature(topology, land),
+                interiors: topojson.mesh(topology, countries, (a, b) => a !== b)
             })
         })
     }, [])

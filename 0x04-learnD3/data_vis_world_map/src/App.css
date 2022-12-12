@@ -5,6 +5,30 @@
   text-align: center;
 }
 
+body {
+  margin: 0;
+  overflow: hidden;
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Nanum Myeongjo', serif;
+}
+pre {
+  font-size: 7em;
+}
+.map .land {
+  fill: #137B80;
+}
+.map .sphere {
+  fill: #ececec;
+}
+.map .interiors {
+  fill: none;
+  stroke: #43A4A8;
+}
+.map .graticules {
+  fill: none;
+  stroke: #dadada;
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;
