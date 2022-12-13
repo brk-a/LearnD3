@@ -5,6 +5,16 @@
   text-align: center;
 }
 
+body {
+  margin: 0;
+  overflow: hidden;
+}
+label, select {
+  font-size: 4em;
+}
+select option {
+  font-size: 1rem;
+}
 
 /* .logo {
   height: 6em;
