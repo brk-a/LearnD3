@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 import {useData} from './hooks'
-import { Marks, AxisLeft, Dropdown } from './components'
-import AxisBottom from './components/AxisBottom'
+import { Marks, AxisLeft, Dropdown, AxisBottom } from './components'
 
+// const ReactDropdown = window.react-dropdown-browser
+
+// console.log(ReactDropdown)
+// console.log(window)
 const width = 1280
 const menuHeight = 80
 const height = 791 - menuHeight
