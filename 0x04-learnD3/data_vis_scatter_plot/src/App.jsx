@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import {useData} from './hooks'
-import { Marks, AxisLeft, Dropdown, AxisBottom } from './components'
+import { Marks, AxisLeft, AxisBottom } from './components'
+import Dropdown from 'react-dropdown'
 
 // const ReactDropdown = window.react-dropdown-browser
 
@@ -71,21 +72,21 @@ const App = () => {
   
   return (
     <>
-      <label htmlFor='x-select'>X</label>
-      <Dropdown
-        options={attributes}
-        id='x-select'
-        selectedValue={xAttribute}
-        onSelectedValueChange={setXAttribute}
-      />
+      <div className="menu-container">
+        <span className='dropdown-label'>X</span>
+        <Dropdown
+          options={attributes}
+          value={xAttribute}
+          onChange={({value}) => setXAttribute(value)}
+        />
 
-      <label htmlFor='y-select'>Y</label>
-      <Dropdown
-        options={attributes}
-        id='y-select'
-        selectedValue={yAttribute}
-        onSelectedValueChange={setYAttribute}
-      />
+        <span className='dropdown-label'>Y</span>
+        <Dropdown
+          options={attributes}
+          value={yAttribute}
+          onChange={({value}) => setYAttribute(value)}
+        />
+      </div>
 
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left}, ${margin.top})`}>
