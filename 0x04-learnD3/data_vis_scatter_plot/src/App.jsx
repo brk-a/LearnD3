@@ -46,10 +46,14 @@ const App = () => {
   const yValue = d => d[yAttribute]
   const yAxisLabel = getLabel(yAttribute)
 
+  const [enterValue, setEnterValue] = useState(null)
+
   if (!data) return <pre> Loading ... </pre>
 
   const colourValue = d => d.species
   const colourLegendLabel = 'Species'
+
+  const filteredData = data.filter( d => enterValue === colourValue(d))
 
   const innerWidth = width - margin.left - margin.right
   const innerHeight = height - margin.bottom - margin.top
@@ -124,23 +128,38 @@ const App = () => {
           </text>
 
           <g transform={`translate(${innerWidth + margin.right / 2}, ${margin.right/2})`}>
-          <text
-            className='axis-label'
-            x={35}
-            y={-25}
-            textAnchor='middle'
-          >
-            {colourLegendLabel}
-          </text>
+            <text
+              className='axis-label'
+              x={35}
+              y={-25}
+              textAnchor='middle'
+            >
+              {colourLegendLabel}
+            </text>
             <ColourLegend
               colourScale={colourScale}
               tickSpacing={25}
               circleRadius={circleRadius}
+              handleMouseEnter={setEnterValue}
+            />
+          </g>
+
+          <g opacity={enterValue ? .2 : 1}>
+            <Marks
+              data={data}
+              xScale={xScale}
+              xValue={xValue}
+              yScale={yScale}
+              yValue={yValue}
+              colourScale={colourScale}
+              colourValue={colourValue}
+              circleRadius={circleRadius}
+              tooltipFormat={tooltipFormat}
             />
           </g>
 
           <Marks
-            data={data}
+            data={filteredData}
             xScale={xScale}
             xValue={xValue}
             yScale={yScale}
