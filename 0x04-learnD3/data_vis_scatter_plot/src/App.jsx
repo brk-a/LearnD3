@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import {useData} from './hooks'
-import { Marks, AxisLeft, AxisBottom } from './components'
+import { Marks, AxisLeft, AxisBottom, ColourLegend } from './components'
 import Dropdown from 'react-dropdown'
 
 // const ReactDropdown = window.react-dropdown-browser
@@ -11,9 +11,10 @@ import Dropdown from 'react-dropdown'
 const width = 1280
 const menuHeight = 80
 const height = 791 - menuHeight
-const margin = {top: 20, right: 30, bottom: 85, left: 100}
+const margin = {top: 20, right: 200, bottom: 85, left: 100}
 const xAxisLabelOffset = 70
 const yAxisLabelOffset = 70
+const circleRadius = 7
 
 const attributes = [
   {value: 'sepal_length', label: 'Sepal Length'},
@@ -47,6 +48,9 @@ const App = () => {
 
   if (!data) return <pre> Loading ... </pre>
 
+  const colourValue = d => d.species
+  const colourLegendLabel = 'Species'
+
   const innerWidth = width - margin.left - margin.right
   const innerHeight = height - margin.bottom - margin.top
   const siFormat = d3.format('.2s')
@@ -69,6 +73,10 @@ const App = () => {
   const yScale = d3.scaleLinear()
     .domain(d3.extent(data, yValue))
     .range([innerHeight, 0])
+
+  const colourScale = d3.scaleOrdinal()
+    .domain(data.map(colourValue))
+    .range(['#e6842a','#137b80','#8e6c8a']) //#00ff00 if #8e6c8a underwhelms
   
   return (
     <>
@@ -115,13 +123,31 @@ const App = () => {
             {yAxisLabel}
           </text>
 
+          <g transform={`translate(${innerWidth + margin.right / 2}, ${margin.right/2})`}>
+          <text
+            className='axis-label'
+            x={35}
+            y={-25}
+            textAnchor='middle'
+          >
+            {colourLegendLabel}
+          </text>
+            <ColourLegend
+              colourScale={colourScale}
+              tickSpacing={25}
+              circleRadius={circleRadius}
+            />
+          </g>
+
           <Marks
             data={data}
             xScale={xScale}
             xValue={xValue}
             yScale={yScale}
             yValue={yValue}
-            circleRadius={7}
+            colourScale={colourScale}
+            colourValue={colourValue}
+            circleRadius={circleRadius}
             tooltipFormat={tooltipFormat}
           />
         </g>
