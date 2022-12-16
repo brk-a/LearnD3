@@ -4,7 +4,7 @@ const projection = d3.geoNaturalEarth1()
 const path = d3.geoPath(projection)
 const graticule = d3.geoGraticule()
 
-const Map = ({worldAtlas: {land, interiors}, cities, circleRadius=1.5}) => (
+const Map = ({worldAtlas: {land, interiors}, cities, sizeScale, sizeValue}) => (
     <g className='map'>
         <path className='sphere' d={path({type: 'Sphere'})}/>
         <path className='graticules' d={path(graticule())}/>
@@ -16,7 +16,12 @@ const Map = ({worldAtlas: {land, interiors}, cities, circleRadius=1.5}) => (
         <path className='interiors' d={path(interiors)}/>
         {cities.map((city, i) => {
             const [x, y] = projection([city.lng, city.lat])
-            return <circle key={i} cx={x} cy={y} r={circleRadius}/>
+            return <circle
+                        key={i}
+                        cx={x}
+                        cy={y}
+                        r={sizeScale(sizeValue(city))}
+                    />
         })}
     </g>
 )

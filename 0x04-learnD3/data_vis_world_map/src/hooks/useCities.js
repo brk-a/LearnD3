@@ -5,6 +5,7 @@ const csvUrl = 'https://gist.githubusercontent.com/brk-a/9afd6fb2d76edffec76c04d
 const row = d => {
     d.lat = +d.lat
     d.lng = +d.lng
+    d.population = +d.population
     return d
 }
 

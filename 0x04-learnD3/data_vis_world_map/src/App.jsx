@@ -12,9 +12,16 @@ function App() {
 
   if (!worldAtlas || !cities) return <pre> Loading ... </pre>
 
+  const sizeValue = d => d.population
+  const maxRadius = 15
+
+  const sizeScale = d3.scaleSqrt()
+    .domain([0, d3.max(cities, sizeValue)])
+    .range([0, maxRadius])
+
   return (
     <svg width={width} height={height}>
-      <Map worldAtlas={worldAtlas} cities={cities}/>
+      <Map worldAtlas={worldAtlas} cities={cities} sizeScale={sizeScale} sizeValue={sizeValue}/>
     </svg>
   )
 }
