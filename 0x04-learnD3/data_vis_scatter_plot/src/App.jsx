@@ -15,6 +15,7 @@ const margin = {top: 20, right: 200, bottom: 85, left: 100}
 const xAxisLabelOffset = 70
 const yAxisLabelOffset = 70
 const circleRadius = 7
+const fadeOpacity = 0.2
 
 const attributes = [
   {value: 'sepal_length', label: 'Sepal Length'},
@@ -141,10 +142,12 @@ const App = () => {
               tickSpacing={25}
               circleRadius={circleRadius}
               handleMouseEnter={setEnterValue}
+              enterValue={enterValue}
+              fadeOpacity={fadeOpacity}
             />
           </g>
 
-          <g opacity={enterValue ? .2 : 1}>
+          <g opacity={enterValue ? fadeOpacity : 1}>
             <Marks
               data={data}
               xScale={xScale}

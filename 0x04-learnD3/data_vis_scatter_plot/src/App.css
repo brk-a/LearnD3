@@ -14,6 +14,7 @@ pre {
 }
 .tick text {
   fill: #635F5D;
+  cursor: default;
 }
 /* .mark {
   fill: #137B80;

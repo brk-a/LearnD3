@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from "react"
+import {useState, useEffect} from "react"
 
-const jsonUrl = 'https://unpkg.com/world-atlas@2.0.2/countries-10m.json'
+// const jsonUrl = 'https://unpkg.com/world-atlas@2.0.2/countries-10m.json'
+const jsonUrl = 'https://unpkg.com/world-atlas@2.0.2/countries-50m.json'
 
-const useData = () => {
+const useWorldAtlas = () => {
     const [data, setData] = useState(null)
     useEffect(() => {
         d3.json(jsonUrl).then((topology) => {
@@ -16,4 +17,4 @@ const useData = () => {
     return data
 }
 
-export default useData
+export default useWorldAtlas

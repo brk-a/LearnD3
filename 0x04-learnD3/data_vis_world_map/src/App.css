@@ -15,20 +15,24 @@ pre {
   font-size: 7em;
 }
 .map .land {
-  fill: #137B80;
+  /* fill: #137B80; */
+  fill: #ececec;
 }
 .map .sphere {
-  fill: #ececec;
+  fill: #fbfbfb;
 }
 .map .interiors {
   fill: none;
-  stroke: #43A4A8;
+  stroke: #d9dfe0;
 }
 .map .graticules {
   fill: none;
-  stroke: #dadada;
+  stroke: #ececec;
 }
-
+circle{
+  fill: #137b80;
+  opacity: .3;
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;

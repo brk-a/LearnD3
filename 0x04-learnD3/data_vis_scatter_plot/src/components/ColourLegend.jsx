@@ -1,4 +1,4 @@
-const ColourLegend = ({colourScale, handleMouseEnter, tickSpacing=20, circleRadius=5, tickTextOffest=20}) => {
+const ColourLegend = ({colourScale, handleMouseEnter, enterValue, fadeOpacity, tickSpacing=20, circleRadius=5, tickTextOffest=20}) => {
     return colourScale.domain().map((domainValue, i) => (
         <g
             key={i}
@@ -6,6 +6,7 @@ const ColourLegend = ({colourScale, handleMouseEnter, tickSpacing=20, circleRadi
             transform={`translate(${0}, ${i * tickSpacing})`}
             onMouseEnter={() => handleMouseEnter(domainValue)}
             onMouseOut={() => handleMouseEnter(null)}
+            opacity={enterValue && domainValue !== enterValue ? fadeOpacity : 1}
         >
             <circle fill={colourScale(domainValue)} r={circleRadius}/>
             <text 

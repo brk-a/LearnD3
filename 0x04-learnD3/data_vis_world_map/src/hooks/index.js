@@ -1,5 +1,7 @@
-import useData from './useData'
+import useWorldAtlas from './useWorldAtlas'
+import useCities from './useCities'
 
 export {
-    useData
+    useCities,
+    useWorldAtlas,
 }
