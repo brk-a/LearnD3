@@ -1,8 +1,9 @@
 import React from 'react'
 
 const useWorldAtlas = () => {
+  const atlas = () => 20
   return (
-    <div>useWorldAtlas</div>
+    atlas
   )
 }
 

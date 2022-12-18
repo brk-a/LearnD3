@@ -1,10 +1,40 @@
 #root {
-  max-width: 3000px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
+body {
+  margin: 0;
+  overflow: hidden;
+  /* font-family: 'Nanum Myeongjo', serif; */
+}
+pre {
+  font-size: 7em;
+}
+.tick line {
+  stroke: #C0C0BB;
+}
+.tick text {
+  fill: #635F5D;
+}
+.marks circle {
+  fill: #137B80;
+}
+.marks path {
+  stroke: #137B80;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.axis-label {
+  font-size: 2.2em;
+  fill: #635F5D;
+}
+.mark {
+  fill: #137B80;
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;
