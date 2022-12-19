@@ -15,14 +15,14 @@ function App() {
 
   if (!data || !atlas) return <pre> Loading ... </pre>
 
-  const innerWidth = width - margin.left - margin.right
-  const innerHeight = height - margin.top - margin.bottom
-
   const xValue = d => d['Reported Date']
   const xAxisLabel = 'Time'
 
   const yValue = d => d['Total Dead and Missing']
   const yAxisLabel = 'Dead and missing'
+
+  const innerWidth = width - margin.left - margin.right
+  const innerHeight = height - margin.top - margin.bottom
 
   const xAxisTickFormat = d3.timeFormat('%d-%b-%y') //alt: '%d-%m-%Y' or '%d-%b-%Y'
 
@@ -31,13 +31,25 @@ function App() {
     .range([0, innerWidth])
     .nice()
 
-  const yScale = d3.scaleLinear()
-    .domain(d3.extent(data, yValue))
-    .range([innerHeight, 0])
-    .nice()
-
   // const tickFormat = d => millify(d)
   const tooltipFormat = tickValue => tickValue
+
+  const [start, stop] = xScale.domain()
+
+  const binnedData = d3.bin()
+    .value(xValue)
+    .domain(xScale.domain())
+    .thresholds(d3.timeMonths(start, stop))(data)
+    .map(array => ({
+      y: d3.sum(array, yValue), //totalDeadAndMissing
+      x0: array.x0,
+      x1: array.x1
+    }))
+
+    const yScale = d3.scaleLinear()
+    .domain([0, d3.max(binnedData, d => d.y)])
+    .range([innerHeight, 0])
+    .nice()
 
   return (
     <svg width={width} height={height}>
@@ -74,13 +86,11 @@ function App() {
         </text>
 
         <Marks
-          data={data}
+          data={binnedData}
           xScale={xScale}
-          xValue={xValue}
           yScale={yScale}
-          yValue={yValue}
           tooltipFormat={tooltipFormat}
-          circleRadius={2}
+          innerHeight={innerHeight}
         />
 
         {/* <Line
