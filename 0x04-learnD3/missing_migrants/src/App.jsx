@@ -1,4 +1,4 @@
-import {useData, useWorldAtlas} from './hooks'
+import {useMigrantsData, useWorldAtlas} from './hooks'
 import {AxisBottom, AxisLeft, Marks} from './components'
 // import millify from 'millify'
 import './App.css'
@@ -10,7 +10,7 @@ const xAxisLabelOffset = 70
 const yAxisLabelOffset = 70
 
 function App() {
-  const data = useData()
+  const data = useMigrantsData()
   const atlas = useWorldAtlas()
 
   if (!data || !atlas) return <pre> Loading ... </pre>
@@ -51,57 +51,72 @@ function App() {
     .range([innerHeight, 0])
     .nice()
 
+  const sizeValue= d => d['Total Dead and Missing']
+  const maxRadius = 15
+
+  const sizeScale = d3.scaleSqrt()
+    .domain(0, d3.max(data, sizeValue))
+    .range([0, maxRadius])
+
   return (
-    <svg width={width} height={height}>
-      <g transform={`translate(${margin.left},${margin.top})`}>
-        <AxisBottom
-          xScale={xScale} 
-          innerHeight={innerHeight}
-          tickFormat={xAxisTickFormat}
-          tickOffset={7}
-          transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
-        />
+    <>
+      <svg width={width/2} height={height/2}>
+        <g transform={`translate(${margin.left},${margin.top})`}>
+          <AxisBottom
+            xScale={xScale} 
+            innerHeight={innerHeight}
+            tickFormat={xAxisTickFormat}
+            tickOffset={7}
+            transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
+          />
 
-        <text
-          className='axis-label'
-          textAnchor='middle'
-          transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
-        >
-          {yAxisLabel}
-        </text>
+          <text
+            className='axis-label'
+            textAnchor='middle'
+            transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
+          >
+            {yAxisLabel}
+          </text>
 
-        <AxisLeft
-          yScale={yScale}
-          innerWidth={innerWidth}
-          tickOffset={7}
-        />
+          <AxisLeft
+            yScale={yScale}
+            innerWidth={innerWidth}
+            tickOffset={7}
+          />
 
-        <text
-          className='axis-label'
-          textAnchor='middle'
-          x={innerWidth / 2}
-          y={innerHeight + xAxisLabelOffset}
-        >
-          {xAxisLabel}
-        </text>
+          <text
+            className='axis-label'
+            textAnchor='middle'
+            x={innerWidth / 2}
+            y={innerHeight + xAxisLabelOffset}
+          >
+            {xAxisLabel}
+          </text>
 
-        <Marks
-          data={binnedData}
-          xScale={xScale}
-          yScale={yScale}
-          tooltipFormat={tooltipFormat}
-          innerHeight={innerHeight}
-        />
+          <Marks
+            data={binnedData}
+            xScale={xScale}
+            yScale={yScale}
+            tooltipFormat={tooltipFormat}
+            innerHeight={innerHeight}
+          />
 
-        {/* <Line
-          data={data}
-          xScale={xScale}
-          xValue={xValue} 
-          yScale={yScale}
-          yValue={yValue}
-        /> */}
-      </g>
-    </svg>
+          {/* <Line
+            data={data}
+            xScale={xScale}
+            xValue={xValue} 
+            yScale={yScale}
+            yValue={yValue}
+          /> */}
+        </g>
+      </svg>
+
+      <svg width={width/2} height={height/2}>
+        <g transform={`translate(${margin.left},${margin.top})`}>
+          <Map worldAtlas={atlas} data={data} sizeScale={sizeScale} sizeValue={sizeValue}/>
+        </g>
+      </svg>
+    </>
   )
 }
 
