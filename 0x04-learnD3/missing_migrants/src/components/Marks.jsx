@@ -10,7 +10,7 @@ const Marks = ({data, xScale, yScale, tooltipFormat, innerHeight}) => (
             width={xScale(d.x1) - xScale(d.x0)}
             height={innerHeight - yScale(d.y)}
         >
-            {/* <title>{tooltipFormat(d.y)}</title> */}
+            <title>{tooltipFormat(d.y)}</title>
         </rect>
     )) 
 )
