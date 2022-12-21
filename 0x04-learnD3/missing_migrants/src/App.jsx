@@ -1,5 +1,5 @@
 import {useMigrantsData, useWorldAtlas} from './hooks'
-import {AxisBottom, AxisLeft, Marks} from './components'
+import {AxisBottom, AxisLeft, Marks, Map} from './components'
 // import millify from 'millify'
 import './App.css'
 
@@ -111,11 +111,11 @@ function App() {
         </g>
       </svg>
 
-      <svg width={width/2} height={height/2}>
+      {/* <svg width={width/2} height={height/2}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           <Map worldAtlas={atlas} data={data} sizeScale={sizeScale} sizeValue={sizeValue}/>
         </g>
-      </svg>
+      </svg> */}
     </>
   )
 }
