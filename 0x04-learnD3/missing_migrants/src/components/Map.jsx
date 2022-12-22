@@ -15,7 +15,7 @@ const Map = ({worldAtlas: {land, interiors}, data, sizeScale, sizeValue}) => (
         }
         <path className='interiors' d={path(interiors)}/>
         {data.map((d, i) => {
-            const [x, y] = projection([d.coordinates])
+            const [x, y] = projection(d.coordinates)
             return <circle
                         key={i}
                         cx={x}

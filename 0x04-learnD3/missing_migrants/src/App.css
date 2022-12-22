@@ -1,5 +1,7 @@
 #root {
   max-width: 1280px;
+  max-height: max-content;
+  overflow: hidden;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -7,7 +9,6 @@
 
 body {
   margin: 0;
-  overflow: hidden;
   /* font-family: 'Nanum Myeongjo', serif; */
 }
 pre {
@@ -34,6 +35,25 @@ pre {
 }
 .mark {
   fill: #137B80;
+}
+.map .land {
+  /* fill: #137B80; */
+  fill: #ececec;
+}
+.map .sphere {
+  fill: #fbfbfb;
+}
+.map .interiors {
+  fill: none;
+  stroke: #d9dfe0;
+}
+.map .graticules {
+  fill: none;
+  stroke: #ececec;
+}
+circle{
+  fill: #137b80;
+  opacity: .3;
 }
 /* .logo {
   height: 6em;

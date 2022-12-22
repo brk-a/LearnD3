@@ -55,12 +55,12 @@ function App() {
   const maxRadius = 15
 
   const sizeScale = d3.scaleSqrt()
-    .domain(0, d3.max(data, sizeValue))
+    .domain([0, d3.max(data, sizeValue)])
     .range([0, maxRadius])
 
   return (
     <>
-      <svg width={width/2} height={height/2}>
+      <svg width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           <AxisBottom
             xScale={xScale} 
@@ -111,11 +111,16 @@ function App() {
         </g>
       </svg>
 
-      {/* <svg width={width/2} height={height/2}>
+      <svg width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
-          <Map worldAtlas={atlas} data={data} sizeScale={sizeScale} sizeValue={sizeValue}/>
+          <Map
+            worldAtlas={atlas}
+            data={data}
+            sizeScale={sizeScale}
+            sizeValue={sizeValue}
+          />
         </g>
-      </svg> */}
+      </svg>
     </>
   )
 }
