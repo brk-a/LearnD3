@@ -3,10 +3,13 @@ import AxisBottom from './AxisBottom'
 import AxisLeft from './AxisLeft'
 import Marks from './Marks'
 
-const height = 100
-const width = height * 1.618033988
+const width = 1280
+const height = width / 1.618033988
+const margin = {top: 20, right: 20, bottom: 80, left: 100}
+const xAxisLabelOffset = 70
+const yAxisLabelOffset = 70
 
-const DateHistogram = ({data, innerHeight, innerWidth, xAxisLabelOffset, yAxisLabelOffset}) => {
+const DateHistogram = ({data, innerHeight, innerWidth}) => {
     const xValue = d => d['Reported Date']
     const xAxisLabel = 'Time'
   
@@ -41,7 +44,8 @@ const DateHistogram = ({data, innerHeight, innerWidth, xAxisLabelOffset, yAxisLa
     .nice()
 
     return (
-        <g width={width} height={height}>
+        <svg width={width} height={height}>
+            <g transform={`translate(${margin.left},${margin.top})`}>
             <AxisBottom
                 xScale={xScale} 
                 innerHeight={innerHeight}
@@ -89,6 +93,7 @@ const DateHistogram = ({data, innerHeight, innerWidth, xAxisLabelOffset, yAxisLa
                 yValue={yValue}
             /> */}
         </g>
+        </svg>
 
     )
 }
