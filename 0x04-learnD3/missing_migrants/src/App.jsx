@@ -14,9 +14,6 @@ const App = () => {
 
   if (!data || !atlas) return <pre> Loading ... </pre>
 
-  const innerWidth = width - margin.left - margin.right
-  const innerHeight = height - margin.top - margin.bottom
-
   return (
     <>
       {/* <svg width={width} height={height}>
@@ -32,8 +29,6 @@ const App = () => {
           {/* <g transform={`translate(0, ${height * ( 1 - dateHistogramSize)})`}> */}
           <DateHistogram
             data={data}
-            innerHeight={innerHeight}
-            innerWidth={innerWidth}
           />
           {/* </g> */}
         </g>

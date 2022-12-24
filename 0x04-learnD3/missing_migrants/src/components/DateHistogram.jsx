@@ -6,10 +6,12 @@ import Marks from './Marks'
 const width = 1280
 const height = width / 1.618033988
 const margin = {top: 20, right: 20, bottom: 80, left: 100}
+const innerWidth = width - margin.left - margin.right
+const innerHeight = height - margin.top - margin.bottom
 const xAxisLabelOffset = 70
 const yAxisLabelOffset = 70
 
-const DateHistogram = ({data, innerHeight, innerWidth}) => {
+const DateHistogram = ({data}) => {
     const xValue = d => d['Reported Date']
     const xAxisLabel = 'Time'
   
@@ -44,7 +46,7 @@ const DateHistogram = ({data, innerHeight, innerWidth}) => {
     .nice()
 
     return (
-        <svg width={width} height={height}>
+        // <svg width={width} height={height}>
             <g transform={`translate(${margin.left},${margin.top})`}>
             <AxisBottom
                 xScale={xScale} 
@@ -93,7 +95,7 @@ const DateHistogram = ({data, innerHeight, innerWidth}) => {
                 yValue={yValue}
             /> */}
         </g>
-        </svg>
+        // </svg>
 
     )
 }
