@@ -1,6 +1,6 @@
 #root {
   max-width: 1280px;
-  max-height: max-content;
+  /* max-height: max-content; */
   overflow: hidden;
   margin: 0 auto;
   padding: 2rem;
@@ -14,11 +14,12 @@ body {
 pre {
   font-size: 7em;
 }
-.tick line {
+/* .tick line {
   stroke: #C0C0BB;
-}
+} */
 .tick text {
   fill: #635F5D;
+  font-size: .75em;
 }
 .marks circle {
   fill: #137B80;
@@ -30,7 +31,7 @@ pre {
   stroke-linecap: round;
 }
 .axis-label {
-  font-size: 2.2em;
+  font-size: 0.9em;
   fill: #635F5D;
 }
 .mark {
@@ -47,7 +48,7 @@ pre {
   fill: none;
   stroke: #d9dfe0;
 }
-.map .graticules {
+.map .graticules, .tick line {
   fill: none;
   stroke: #ececec;
 }

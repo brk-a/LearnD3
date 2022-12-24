@@ -3,15 +3,13 @@ import AxisBottom from './AxisBottom'
 import AxisLeft from './AxisLeft'
 import Marks from './Marks'
 
-const width = 1280
-const height = width / 1.618033988
-const margin = {top: 20, right: 20, bottom: 80, left: 100}
-const innerWidth = width - margin.left - margin.right
-const innerHeight = height - margin.top - margin.bottom
-const xAxisLabelOffset = 70
-const yAxisLabelOffset = 70
+const DateHistogram = ({data, height, width}) => {
+    const margin = {top: 10, right: 30, bottom: 25, left: 60}
+    const xAxisLabelOffset = 40
+    const yAxisLabelOffset = 40
+    const innerWidth = width - margin.left - margin.right
+    const innerHeight = height - margin.top - margin.bottom
 
-const DateHistogram = ({data}) => {
     const xValue = d => d['Reported Date']
     const xAxisLabel = 'Time'
   
@@ -46,56 +44,58 @@ const DateHistogram = ({data}) => {
     .nice()
 
     return (
-        // <svg width={width} height={height}>
-            <g transform={`translate(${margin.left},${margin.top})`}>
-            <AxisBottom
-                xScale={xScale} 
-                innerHeight={innerHeight}
-                tickFormat={xAxisTickFormat}
-                tickOffset={7}
-                transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
-             />
+        <>
+            <rect width={width} height={height} fill='white'/>
+            <g transform={`translate(${margin.left}, ${margin.top})`}>
+           
+                <AxisBottom
+                    xScale={xScale} 
+                    innerHeight={innerHeight}
+                    tickFormat={xAxisTickFormat}
+                    tickOffset={7}
+                    transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
+                />
 
-            <text
-                className='axis-label'
-                textAnchor='middle'
-                transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
-            >
-                {yAxisLabel}
-            </text>
+                <text
+                    className='axis-label'
+                    textAnchor='middle'
+                    transform={`translate(${-yAxisLabelOffset}, ${innerHeight / 2}) rotate(-90)`}
+                >
+                    {yAxisLabel}
+                </text>
 
-            <AxisLeft
-                yScale={yScale}
-                innerWidth={innerWidth}
-                tickOffset={7}
-            />
+                <AxisLeft
+                    yScale={yScale}
+                    innerWidth={innerWidth}
+                    tickOffset={7}
+                />
 
-            <text
-                className='axis-label'
-                textAnchor='middle'
-                x={innerWidth / 2}
-                y={innerHeight + xAxisLabelOffset}
-            >
-                {xAxisLabel}
-            </text>
+                <text
+                    className='axis-label'
+                    textAnchor='middle'
+                    x={innerWidth / 2}
+                    y={innerHeight + xAxisLabelOffset}
+                >
+                    {xAxisLabel}
+                </text>
 
-            <Marks
-                data={binnedData}
-                xScale={xScale}
-                yScale={yScale}
-                tooltipFormat={tooltipFormat}
-                innerHeight={innerHeight}
-            />
+                <Marks
+                    data={binnedData}
+                    xScale={xScale}
+                    yScale={yScale}
+                    tooltipFormat={tooltipFormat}
+                    innerHeight={innerHeight}
+                />
 
-            {/* <Line
-                data={data}
-                xScale={xScale}
-                xValue={xValue} 
-                yScale={yScale}
-                yValue={yValue}
-            /> */}
-        </g>
-        // </svg>
+                {/* <Line
+                    data={data}
+                    xScale={xScale}
+                    xValue={xValue} 
+                    yScale={yScale}
+                    yValue={yValue}
+                /> */}
+            </g>
+        </>
 
     )
 }
