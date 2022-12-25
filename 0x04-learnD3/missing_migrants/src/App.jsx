@@ -25,7 +25,8 @@ const App = () => {
   return (
     <svg width={width} height={height}>
       <BubbleMap
-        data={filteredData}
+        data={data}
+        filteredData={filteredData}
         atlas={atlas}
       />
       <g transform={`translate(0, ${height - dateHistogramSize * height})`}>

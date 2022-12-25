@@ -1,18 +1,20 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import Map from './Map'
 
-const BubbleMap = ({data, atlas}) => {
-    const sizeValue= d => d['Total Dead and Missing']
-    const maxRadius = 15
+const sizeValue= d => d['Total Dead and Missing']
+const maxRadius = 15
 
-    const sizeScale = d3.scaleSqrt()
+const BubbleMap = ({data, filteredData, atlas}) => {
+
+    const sizeScale = useMemo(() => d3.scaleSqrt()
         .domain([0, d3.max(data, sizeValue)])
-        .range([0, maxRadius])
+        .range([0, maxRadius]), [data, maxRadius, sizeValue]
+    )
         
     return (
         <Map
             worldAtlas={atlas}
-            data={data}
+            data={filteredData}
             sizeScale={sizeScale}
             sizeValue={sizeValue}
         />
