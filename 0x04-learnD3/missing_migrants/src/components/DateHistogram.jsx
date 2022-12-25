@@ -1,16 +1,17 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import AxisBottom from './AxisBottom'
 import AxisLeft from './AxisLeft'
 import Marks from './Marks'
 
-const DateHistogram = ({data, height, width}) => {
+const DateHistogram = ({data, height, width, setBrushExtent, xValue}) => {
+    const brushRef = useRef()
+
     const margin = {top: 10, right: 30, bottom: 25, left: 60}
     const xAxisLabelOffset = 40
     const yAxisLabelOffset = 40
     const innerWidth = width - margin.left - margin.right
     const innerHeight = height - margin.top - margin.bottom
 
-    const xValue = d => d['Reported Date']
     const xAxisLabel = 'Time'
   
     const yValue = d => d['Total Dead and Missing']
@@ -42,6 +43,17 @@ const DateHistogram = ({data, height, width}) => {
     .domain([0, d3.max(binnedData, d => d.y)])
     .range([innerHeight, 0])
     .nice()
+    
+    const brushed = (e) => (
+        setBrushExtent(e.selection && e.selection.map(xScale.invert))
+    )
+
+    useEffect(() => {
+        const brush = d3.brushX()
+            .extent([[0, 0], [innerWidth, innerHeight]])
+            .on('brush end', brushed)
+        brush(d3.select(brushRef.current))
+    }, [innerHeight, innerWidth])
 
     return (
         <>
@@ -95,6 +107,7 @@ const DateHistogram = ({data, height, width}) => {
                     yValue={yValue}
                 /> */}
             </g>
+            <g ref={brushRef}></g>
         </>
 
     )
