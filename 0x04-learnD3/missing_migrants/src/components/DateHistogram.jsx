@@ -6,6 +6,8 @@ import Marks from './Marks'
 const DateHistogram = ({data, height, width, setBrushExtent, xValue}) => {
     const brushRef = useRef()
 
+    const width = width
+    const height = height
     const margin = {top: 10, right: 30, bottom: 25, left: 60}
     const xAxisLabelOffset = 40
     const yAxisLabelOffset = 40
