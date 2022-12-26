@@ -1,0 +1,108 @@
+#root {
+  max-width: 1280px;
+  /* max-height: max-content; */
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  /* font-family: 'Nanum Myeongjo', serif; */
+}
+pre {
+  font-size: 7em;
+}
+.map .sphere {
+  fill: #fbfbfb;
+}
+.map .interiors {
+  fill: none;
+  stroke: #d9dfe0;
+}
+.map .graticules {
+  fill: none;
+  stroke: #ececec;
+}
+circle {
+  fill: #137B80;
+  opacity: 0.3;
+}
+
+/* .tick line {
+  stroke: #C0C0BB;
+} */
+/* .tick text {
+  fill: #635F5D;
+  font-size: .75em;
+}
+.marks circle {
+  fill: #137B80;
+}
+.marks path {
+  stroke: #137B80;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.axis-label {
+  font-size: 0.9em;
+  fill: #635F5D;
+}
+.mark {
+  fill: #137B80;
+}
+.map .land {
+  /* fill: #137B80; 
+  fill: #ececec;
+}
+.map .sphere {
+  fill: #fbfbfb;
+}
+.map .interiors {
+  fill: none;
+  stroke: #d9dfe0;
+}
+.map .graticules, .tick line {
+  fill: none;
+  stroke: #ececec;
+}
+circle{
+  fill: #137b80;
+  opacity: .3;
+} 
+/* .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
