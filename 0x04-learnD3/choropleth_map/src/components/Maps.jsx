@@ -6,16 +6,16 @@ const graticule = d3.geoGraticule()
 
 const missingDataColour = 'grey'
 
-const Maps = ({worldAtlas: {countries, interiors}, rowByNumericCode, colourScale, colourValue}) => (
+const Maps = ({ worldAtlas: { countries, interiors }, rowByNumericCode, colourScale, colourValue }) => (
     <g className='map'>
-        <path className='sphere' d={path({type: 'Sphere'})}/>
-        <path className='graticules' d={path(graticule())}/>
+        <path className='sphere' d={path({ type: 'Sphere' })} />
+        <path className='graticules' d={path(graticule())} />
         {countries.features.map((feature, i) => {
             const d = rowByNumericCode.get(feature.id)
-            if (!d){
+            if (!d) {
                 console.log(feature.properties.name)
             }
-            return(
+            return (
                 <path
                     key={i}
                     fill={d ? colourScale(colourValue(d)) : missingDataColour}
@@ -23,7 +23,7 @@ const Maps = ({worldAtlas: {countries, interiors}, rowByNumericCode, colourScale
                 />
             )
         })}
-        <path className='interiors' d={path(interiors)}/>
+        <path className='interiors' d={path(interiors)} />
     </g>
 )
 
