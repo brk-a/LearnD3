@@ -1,4 +1,4 @@
-import { useData, useWorldAtlas } from '.hooks'
+import { useData, useWorldAtlas } from './hooks'
 import './App.css'
 
 const App = () => {
