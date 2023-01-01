@@ -1,0 +1,25 @@
+body {
+    background: #010101;
+height: 100%;
+margin: 0;
+padding: 0;
+}
+.country{
+fill:#045041;
+stroke: #150753;
+stroke-width: 0.5;
+}
+.towns{
+    /* fill: rgba(154, 244, 20, 0.74);
+stroke: rgb(208, 208, 208); */
+stroke-width: 1px;
+/* background-image: url(map.png); */
+background-repeat: no-repeat;
+width: 25px;
+/* height: 20px; */
+
+}
+.city_name{
+fill:white;
+font-size: 10px;
+}
