@@ -1,0 +1,9 @@
+Header set content-Security-Policy: upgrade-insucure-requests
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+ReWriteRule ^([^\.]+)$ $1.php [NC, L]
+
+<IfModule mod_headers.c>
+    Header.set Access-Control-Allow-Origin "*"
+</IfModule>
